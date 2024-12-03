@@ -19,29 +19,25 @@ export default class Command extends BaseCommand {
         if (!parsedArgs.text) {
             const commands = this.handler.commands.keys();
             const categories = {};
+
             for (const command of commands) {
                 const info = this.handler.commands.get(command);
                 if (!command) continue;
                 if (!info?.config?.category || info.config.category === 'dev') continue;
-                if (Object.keys(categories).includes(info.config.category)) 
-                    categories[info.config.category].push(info);
-                else {
-                    categories[info.config.category] = [];
-                    categories[info.config.category].push(info);
+
+                if (categories[info.config.category]) {
+                    categories[info.config.category].push(info.config.command);
+                } else {
+                    categories[info.config.category] = [info.config.command];
                 }
             }
 
-            let text = `🌟 *Welcome, ${M.sender.username}!*\n🤖 *Bot Name:* ${this.client.util.capitalize(this.client.config.name)}\n\n⚜️ *Prefix:* _${this.client.config.prefix}_\n\n📜 *Available Commands:*\n\n`;
+            let text = `🌟 *Welcome, ${M.sender.username}!*\n🤖 *Bot Name:* ${this.client.util.capitalize(this.client.config.name)}\n\n💡 *Prefix:* _${this.client.config.prefix}_\n\n📜 *Available Commands by Category:*\n\n`;
             const keys = Object.keys(categories);
+
             for (const key of keys) {
-                text += `◦ ${this.emojis[keys.indexOf(key)]} *${key.toUpperCase()}*\n`;
-                text += categories[key]
-                    .map(
-                        (command) =>
-                            `  └ ${this.client.config.prefix}${this.replaceWithCustomAlphabet(command.config?.command)} - _${command.config.description.usage ?? ''}_`
-                    )
-                    .join('\n');
-                text += `\n\n`;
+                text += `${this.emojis[keys.indexOf(key)]} *${key.toUpperCase()}*\n`;
+                text += `    ➤ ${categories[key].join(', ')}\n\n`;
             }
 
             return void (await M.reply(
