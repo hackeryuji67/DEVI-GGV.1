@@ -46,7 +46,7 @@ export default class Command extends BaseCommand {
                     thumbnail: await this.client.util.fetchBuffer(url),
                     mediaType: 1,
                     mediaUrl: '',
-                    sourceUrl: 'https://github.com/Debanjan-San/WhatsApp-Bot-Devi.git',
+                    sourceUrl: 'sky-wave.vercel.app',
                     ShowAdAttribution: true
                 }
             }
