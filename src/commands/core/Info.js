@@ -1,5 +1,4 @@
-import BaseCommand from '../../libs/BaseCommand.js'
-import os from 'os'
+import BaseCommand from '../../libs/BaseCommand.js';
 
 export default class Command extends BaseCommand {
     constructor(client, handler) {
@@ -12,16 +11,40 @@ export default class Command extends BaseCommand {
             },
             dm: true,
             exp: 1
-        })
+        });
     }
 
     exec = async (M) => {
-        const cpus = os.cpus()
-        return void (await M.reply(`🎋 *Users: ${(await this.client.DB.getAllUsers()).length}*
-🎖️ *Groups: ${Object.keys(await this.client.groupFetchAllParticipating()).length}*
-💬 *Platform: ${os.platform()}*
-🌃 *Moderators: ${this.client.config.mods.length}*
-🌀 *Commands: ${this.handler.commands.size}*
-📚 *Cpu: ${cpus[0].model} ${cpus.length > 1 ? `(${cpus.length} core)` : ''}*`))
-    }
+        const totalUsers = (await this.client.DB.getAllUsers()).length;
+        const totalGroups = Object.keys(await this.client.groupFetchAllParticipating()).length;
+        const totalMods = this.client.config.mods.length;
+        const totalCommands = this.handler.commands.size;
+        const bot = this.client.config.name;
+        
+        return void (await M.reply(`
+        * ${bot} * 
+
+        ═════════════════════════════════════
+
+        #️⃣ *Users:* ${totalUsers}
+        🎗 *Groups:* ${totalGroups}
+        ⚜️ *Moderators:* ${totalMods}
+        🎈 *Commands Available:* ${totalCommands}
+
+        ═════════════════════════════════════
+
+        ⚡ *Bot Status:*
+        💻 *Uptime:* ${this.formatUptime(process.uptime())}
+        🕒 *Current Time:* ${new Date().toLocaleString()}
+
+        ═════════════════════════════════════
+        `));
+    };
+
+    formatUptime = (seconds) => {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${hours}h ${minutes}m ${secs}s`;
+    };
 }
