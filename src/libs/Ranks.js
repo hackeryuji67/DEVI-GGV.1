@@ -1,71 +1,55 @@
 export const ranks = {
-    Squire: {
+    Peasant: {
         exp: 0,
-        emoji: '🔨'
+        emoji: '🪓'
     },
-    Knight: {
+    Squire: {
         exp: 1000,
         emoji: '🛡️'
     },
-    Baron: {
+    Knight: {
         exp: 5000,
         emoji: '⚔️'
     },
-    Viscount: {
+    Baron: {
         exp: 10000,
         emoji: '🏰'
     },
-    Count: {
+    Viscount: {
         exp: 20000,
-        emoji: '⚜️'
+        emoji: '🎖️'
     },
-    Duke: {
+    Count: {
         exp: 50000,
         emoji: '👑'
     },
-    Marquis: {
+    Duke: {
         exp: 100000,
-        emoji: '🔮'
+        emoji: '⚜️'
     },
-    Grand Duke: {
-        exp: 135000,
-        emoji: '🎩'
+    'Grand Duke': {
+        exp: 150000,
+        emoji: '⚜️'
+    },
+    Archduke: {
+        exp: 200000,
+        emoji: '🛡️'
     },
     Prince: {
-        exp: 175000,
+        exp: 350000,
         emoji: '👑'
     },
     King: {
-        exp: 200000,
+        exp: 500000,
         emoji: '👑'
     },
     Emperor: {
-        exp: 350000,
-        emoji: '🌟'
-    },
-    Immortal King: {
-        exp: 425000,
-        emoji: '💀'
-    },
-    Celestial Monarch: {
-        exp: 500000,
-        emoji: '💫'
-    },
-    Godlike Emperor: {
-        exp: 650000,
-        emoji: '🔥'
-    },
-    Divine Overlord: {
-        exp: 850000,
-        emoji: '⚡'
-    },
-    Immortal God: {
         exp: 1000000,
-        emoji: '🌌'
+        emoji: '👑'
     },
-    Celestial Deity: {
+    Overlord: {
         exp: 2000000,
-        emoji: '✨'
+        emoji: '🔥'
     }
 };
 
@@ -78,7 +62,7 @@ export const getRank = (exp) => {
             }
             return [currentName, currentRank];
         },
-        ['Squire', ranks['Squire']]
+        ['Peasant', ranks['Peasant']]
     );
     return { name, data: rank };
 };
