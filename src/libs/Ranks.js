@@ -1,84 +1,84 @@
 export const ranks = {
-    Recruit: {
+    Squire: {
         exp: 0,
         emoji: '🔨'
     },
-    Apprentice: {
+    Knight: {
         exp: 1000,
-        emoji: '🛠️'
+        emoji: '🛡️'
     },
-    Disciple: {
+    Baron: {
         exp: 5000,
-        emoji: '⚒️'
+        emoji: '⚔️'
     },
-    Adept: {
+    Viscount: {
         exp: 10000,
-        emoji: '🍀'
+        emoji: '🏰'
     },
-    Master: {
+    Count: {
         exp: 20000,
-        emoji: '〽️'
+        emoji: '⚜️'
     },
-    Grandmaster: {
+    Duke: {
         exp: 50000,
+        emoji: '👑'
+    },
+    Marquis: {
+        exp: 100000,
         emoji: '🔮'
     },
-    Legendary: {
-        exp: 100000,
-        emoji: '👑'
-    },
-    'Legendary II': {
+    Grand Duke: {
         exp: 135000,
-        emoji: '👑'
+        emoji: '🎩'
     },
-    'Legendary III': {
+    Prince: {
         exp: 175000,
         emoji: '👑'
     },
-    Mythical: {
+    King: {
         exp: 200000,
-        emoji: '🌟'
+        emoji: '👑'
     },
-    'Mythical II': {
+    Emperor: {
         exp: 350000,
         emoji: '🌟'
     },
-    'Mythical III': {
+    Immortal King: {
         exp: 425000,
-        emoji: '🌟'
+        emoji: '💀'
     },
-    Immortal: {
+    Celestial Monarch: {
         exp: 500000,
-        emoji: '💀'
-    },
-    'Immortal II': {
-        exp: 650000,
-        emoji: '💀'
-    },
-    'Immortal III': {
-        exp: 850000,
-        emoji: '💀'
-    },
-    Radiant: {
-        exp: 1000000,
         emoji: '💫'
     },
-    Divine: {
-        exp: 2000000,
+    Godlike Emperor: {
+        exp: 650000,
         emoji: '🔥'
+    },
+    Divine Overlord: {
+        exp: 850000,
+        emoji: '⚡'
+    },
+    Immortal God: {
+        exp: 1000000,
+        emoji: '🌌'
+    },
+    Celestial Deity: {
+        exp: 2000000,
+        emoji: '✨'
     }
-}
+};
 
 export const getRank = (exp) => {
-    const lranks = Object.entries(ranks)
+    const lranks = Object.entries(ranks);
     const [name, rank] = lranks.reduce(
         ([currentName, currentRank], [key, value]) => {
             if (exp >= value.exp) {
-                return [key, value]
+                return [key, value];
             }
-            return [currentName, currentRank]
+            return [currentName, currentRank];
         },
-        ['Recruit', ranks['Recruit']]
-    )
-    return { name, data: rank }
-}
+        ['Squire', ranks['Squire']]
+    );
+    return { name, data: rank };
+};
